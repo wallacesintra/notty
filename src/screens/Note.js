@@ -5,7 +5,8 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 
-const Note = () => {
+const Note = (props) => {
+    const {navigation} = props
     const [editable, setEditable] = useState(true)
 
     const edibility = () => {
@@ -14,7 +15,10 @@ const Note = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.titleContainer}>
-                <Pressable style={styles.btn}>
+                <Pressable
+                    onPress={() => navigation.navigate('Home')} 
+                    style={styles.btn}
+                >
                     <Ionicons name="arrow-back" size={30} color="white" />
                 </Pressable>
 
@@ -27,7 +31,7 @@ const Note = () => {
             <View style={styles.noteEditor}>
                 <TextInput
                     style={[styles.txtInput, {fontSize: 25, fontWeight: 'bold'}]}
-                    maxLength={50}
+                    maxLength={60}
                     multiline={true}
                     placeholder="Title"
                     placeholderTextColor={'white'}
@@ -49,7 +53,8 @@ const Note = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: StatusBar.currentHeight || 0,
+        backgroundColor: '#141414',
+        // marginTop: StatusBar.currentHeight || 0,
         flex: 1,
     },
     titleContainer: {

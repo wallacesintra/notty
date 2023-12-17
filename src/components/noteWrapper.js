@@ -2,10 +2,10 @@ import React from "react";
 import { View,Pressable,Text,StyleSheet} from "react-native";
 
 const NoteWrapper = (props) => {
-    const {type, noteTitle, time_created} = props
+    const {type, noteTitle, time_created,goTo} = props
     return (
         <Pressable 
-            onPress={() => console.log('note')}
+            onPress={goTo}
             style={[styles.noteWrapper, {backgroundColor: type}]}
         >
             <Text style={styles.noteTitle}>

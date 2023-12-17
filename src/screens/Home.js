@@ -1,9 +1,24 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { View,Text,StyleSheet,SafeAreaView,StatusBar,Pressable } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 import NoteWrapper from "../components/noteWrapper";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchNotes } from "../redux/NoteSlice";
 
-const Home = () => {
+const Home = (props) => {
+    const {navigation} = props
+    const dispatch = useDispatch()
+
+    const { notesData, error } = useSelector((state) => state.notes)
+
+    useEffect(() => {
+        dispatch(fetchNotes())
+        console.log(`note - ${notesData}`)
+    },[])
+
+
+    // console.log(notesData)
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.titleContainer}>
@@ -14,16 +29,19 @@ const Home = () => {
             </View>
             <View style={styles.notesContainer}>
                 <NoteWrapper
+                    goTo = {() => navigation.navigate('Note')}
                     noteTitle = {"How to make your personal brand stand out online"}
                     time_created = {"Dec 16, 2023"}
                     type = {'pink'}
                 />
                 <NoteWrapper
+                    goTo = {() => navigation.navigate('Note')}
                     noteTitle = {"How to make your personal brand stand out online"}
                     time_created = {"Dec 16, 2023"}
                     type = {'yellow'}
                 />
                 <NoteWrapper
+                    goTo = {() => navigation.navigate('Note')}
                     noteTitle = {"How to make your personal brand stand out online"}
                     time_created = {"Dec 16, 2023"}
                     type = {'green'}
@@ -34,7 +52,8 @@ const Home = () => {
 }
 const styles = StyleSheet.create({
     container: {
-        marginTop: StatusBar.currentHeight || 0,
+        backgroundColor: '#141414',
+        // marginTop: StatusBar.currentHeight || 0,
         flex: 1,
     },
     titleContainer: {
