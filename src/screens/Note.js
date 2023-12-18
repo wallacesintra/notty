@@ -54,7 +54,7 @@ const Note = (props) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#141414',
-        // marginTop: StatusBar.currentHeight || 0,
+        paddingTop: StatusBar.currentHeight || 0,
         flex: 1,
     },
     titleContainer: {
