@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export const fetchNotes = createAsyncThunk('notes/fetchNotes', async () => {
-    const res = await fetch(`../data/test.json`)
+    const res = await fetch(`.data/test.json`)
     const data = await res.json()
     return data
 })
@@ -28,7 +28,9 @@ export const NoteSlices = createSlice({
         state.loading = false
         state.notesData = null
         state.error = action.error.message
-       })
+        // state.error = 'error'
+
+    })
     }
 })
 

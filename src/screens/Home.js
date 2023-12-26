@@ -14,6 +14,7 @@ const Home = (props) => {
     useEffect(() => {
         dispatch(fetchNotes())
         console.log(`note - ${notesData}`)
+        console.log(error)
     },[])
 
 
