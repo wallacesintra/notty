@@ -12,8 +12,8 @@ export default function App() {
   return (
     <NavigationContainer style={styles.container}>
       <Provider store={Store}>
-        {/* <HomeStack/> */}
-        <TestScreen/>
+        <HomeStack/>
+        {/* <TestScreen/> */}
       </Provider>
     </NavigationContainer>
   );

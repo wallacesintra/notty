@@ -1,24 +1,34 @@
 import React,{useEffect} from "react";
-import { View,Text,StyleSheet,SafeAreaView,StatusBar,Pressable } from "react-native";
+import { View,Text,StyleSheet,SafeAreaView,StatusBar,Pressable,FlatList } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 import NoteWrapper from "../components/noteWrapper";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchNotes } from "../redux/NoteSlice";
+// import { fetchNotes } from "../redux/NoteSlice";
 
 const Home = (props) => {
     const {navigation} = props
     const dispatch = useDispatch()
 
-    const { notesData, error } = useSelector((state) => state.notes)
-
+    
+    var { data } = useSelector((state) => state.localStorage)
     useEffect(() => {
-        dispatch(fetchNotes())
-        console.log(`note - ${notesData}`)
-        console.log(error)
-    },[])
+        // dispatch(fetchNotes())
+        
+        // console.log(`note - ${notesData}`)
+        // console.log(error)
+    },[data])
 
 
-    // console.log(notesData)
+    console.log(data)
+
+    const renderItem = ({item}) => (
+        <NoteWrapper
+            goTo = {() => navigation.navigate('Note')}
+            noteTitle = {item.title}
+            time_created = {item.time_created}
+            type = {item.type}
+        />
+    )
 
     return (
         <SafeAreaView style={styles.container}>
@@ -29,13 +39,8 @@ const Home = (props) => {
                 </Pressable>
             </View>
             <View style={styles.notesContainer}>
-                <NoteWrapper
-                    goTo = {() => navigation.navigate('Note')}
-                    noteTitle = {"How to make your personal brand stand out online"}
-                    time_created = {"Dec 16, 2023"}
-                    type = {'pink'}
-                />
-                <NoteWrapper
+
+                {/* <NoteWrapper
                     goTo = {() => navigation.navigate('Note')}
                     noteTitle = {"How to make your personal brand stand out online"}
                     time_created = {"Dec 16, 2023"}
@@ -46,7 +51,12 @@ const Home = (props) => {
                     noteTitle = {"How to make your personal brand stand out online"}
                     time_created = {"Dec 16, 2023"}
                     type = {'green'}
-                />                                
+                />                                 */}
+                <FlatList
+                    data={data._j}
+                    renderItem={renderItem}
+                />
+
             </View>
         </SafeAreaView>
     )

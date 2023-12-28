@@ -12,6 +12,8 @@ const Note = (props) => {
     const edibility = () => {
         setEditable(true? false : true)
     }
+
+    
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.titleContainer}>
@@ -30,6 +32,7 @@ const Note = (props) => {
             </View>
             <View style={styles.noteEditor}>
                 <TextInput
+                    name = {'title'}
                     style={[styles.txtInput, {fontSize: 25, fontWeight: 'bold'}]}
                     maxLength={60}
                     multiline={true}
@@ -40,6 +43,7 @@ const Note = (props) => {
                 />
                 <Text style={styles.noteTime}>May 20, 2023</Text>
                 <TextInput
+                    name={'body'}
                     style={[styles.txtInput, {fontSize: 20, fontWeight: 'normal', color: 'gray'}]}
                     cursorColor={'white'}
                     placeholderTextColor={'white'}
